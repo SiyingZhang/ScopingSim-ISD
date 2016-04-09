@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Video Editor</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<style>
+			body{
+				font-size: 0.8em;
+			}
+			#videoPreview{
+				width: 800px;
+			}
+
+		</style>
+		<script>
+			$( document ).ready(function(){
+				var prevX = 0;
+				var prevY = 0;
+				var $videoPreview = $("#videoPreview");
+				var video = $videoPreview.get(0);
+				var h = $( document ).height();
+				var w = $( document ).width();
+				
+				$('#videoPreview').mousemove(function( event ) {
+					var coordX = event.pageX;
+					var coordY = event.pageY;
+
+					if(prevY < coordY)
+						video.currentTime = video.currentTime + 0.05; // percent * video.duration;
+					else
+						video.currentTime = video.currentTime - 0.05; // percent * video.duration;
+						
+					prevY = coordY;
+					prevX = coordX;
+					$('#debugInfo').text("movement: " + coordY + "; rotation: " + coordX);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="mainContainer">
+			<div id="videoMain">
+				<video id="videoPreview">
+					<source src="images/stock.mp4" type="video/mp4">
+					Your browser does not support HTML5 video.
+				</video>
+			</div>
+			<div id="debugInfo"></div>
+		</div>
+	</body>
+</html>
