@@ -89,11 +89,9 @@
 				    <li class="dropdown" >
 				      <a id="eventLog" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Event Log <span class="caret"></span></a>
 				      <ul class="dropdown-menu">
-				        <li><a href="#">Time1</a></li>
-				        <li><a href="#">Time2</a></li>
-				        <li><a href="#">Time3</a></li>
-				        <li role="separator" class="divider"></li>
-				        <li><a href="#">Separated link</a></li>
+				        <li><a href="#">0:04</a></li>
+				        <li><a href="#">0:15</a></li>
+				        <li><a href="#">1:30</a></li>
 				      </ul>
 				    </li><!--dropdown-->
 				 </ul><!--nav-->
@@ -137,28 +135,29 @@
 		    		<div classs="info">
 		    			<!--x,y,time-->
 		    			<div class="row" style="margin-bottom:10px">
-		    				<!--X-->
-			    			<div class="col-md-3 col-md-offset-1" >
-				    			<p class="info-x" style="line-height: 46px; margin: 0"><span>Rotation(X): </span><span class="detail-value"></span></p>
-				    		</div>
+		    				<div class="col-md-8">
+		    					<div class="row">
+			    					<!--X-->
+					    			<div class="col-md-3" >
+						    			<p class="info-x" style="line-height: 46px; margin: 0"><span>Rotation(X): </span><span class="detail-value"></span></p>
+						    		</div>
 
-				    		<!--Y-->
-				    		<div class="col-md-3">
-				    			<p class="info-y" style="line-height: 46px; margin: 0"><span>Movement(Y): </span><span class="detail-value"></span></p>
-				    		</div>
+						    		<!--Y-->
+						    		<div class="col-md-3">
+						    			<p class="info-y" style="line-height: 46px; margin: 0"><span>Movement(Y): </span><span class="detail-value"></span></p>
+						    		</div>
 
-				    		<!--Time-->
-				    		<div class="col-md-2 col-md-offset-1">
-				    			<p class="info-time" style="line-height: 46px; margin: 0"><span>Time: </span><span class="detail-value"></span></p>
-				    		</div>
-				    	</div><!--row-->
-
-			    		<!--submit-->
-			    		<div class="row">
-				    		<div class="col-md-4 col-md-offset-7">
+						    		<!--Time-->
+						    		<div class="col-md-2">
+						    			<p class="info-time" style="line-height: 46px; margin: 0"><span>Time: </span><span class="detail-value"></span></p>
+						    		</div>
+						    	</div><!--nested row-->
+					    	</div><!--col-md-8-->
+					    	<!--submit-->
+					    	<div class="col-md-3 col-md-offset-1">
 				    			<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Finish Editing" ></input>
 				    		</div>
-				    	</div>
+				    	</div><!--outer row-->
 
 			    	</div><!--info-->
 				</div><!--videoInfo-->
@@ -167,6 +166,7 @@
 
 			<!--sideBar-->
 			<div class="sidebar col-md-4">
+				<!--sideBarInfo-->
 				<div class="sidebar-info row">
 					<div class="col-md-4">
 						<p class="info-x"><span>X: </span><span class="detail-value"></span></p>
@@ -178,6 +178,23 @@
 						<p class="info-time"><span>Time: </span><span class="detail-value"></span></p>
 					</div>
 				</div><!--row-->
+			
+				<!--sidebar content-->
+				<div class="sidebar-content">
+					<ul id="event-option" class="nav nav-sidebar">
+						<li class="option2 sidebar-option"><a href="#">Add Note<span class="sr-only">(current)</span></a></li>
+						<li class="option2 sidebar-option dropdown" role="presentation">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Quiz<span class="caret"></span></a>
+							<!--nested list-->
+							<ul id="quiz-option" class="dropdown-menu">
+								<li class="sidebar-option"><a href="#">Text</a></li>
+								<li class="sidebar-option"><a href="#">Check Box</a></li>
+								<li class="sidebar-option"><a href="#">Multiple Choice</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
 			</div><!--sidebar-->
 
 		</div><!--container-->
