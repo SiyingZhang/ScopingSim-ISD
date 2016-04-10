@@ -1,3 +1,8 @@
+body a {
+	color: #02b3e4;
+}
+
+
 
 .navbar {
 	margin-bottom:0px;
@@ -10,9 +15,11 @@
 	font-size:18px;
 	display:block;
 	width:160px;
-	text-align: center;
 }
 
+#timeIndex{
+	text-align: center;
+}
 
 #title {
 	position: absolute;
@@ -44,9 +51,41 @@
 }
 
 .sidebar{
+	position: relative;
 	background-color:#2E3D49;
-	width:100%%;
+	margin-top: 15px;
 	height:100%;
+
+}
+
+/*opacity effect*/
+/*.sidebar opacity{
+	 width:100%;
+	 height:100%
+	opacity: 1.0;
+    filter: alpha(opacity=100); 
+}*/
+
+.sidebar .overlay {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(108, 115, 117, .8);
+	z-index: 9999;
+	opacity: ;
+	/*filter: blur(10px); */
+}
+
+.sidebar .overlay h4 {
+	position: absolute;
+	top: 50%;
+	margin: 0;
+	text-align: center;
+	left: 0;
+	width: 100%;
+	transform: translateY(-50%);
+	font-size: 24px;
+	color: #111;
 
 }
 
@@ -61,19 +100,20 @@
 
 .sidebar-info{
 	color:#fff;
-	margin:5px;
+	padding-top: 5px;
 }
 
 .sidebar-content{
-	margin: 0 -15px;
+	/*margin: 0 -15px;*/
 	font-size:16px;
 	text-align:center;
 
 }
 
-#event-option a{
+/*the hover color change will disappear*/
+/*#event-option a{
 	color:#02b3e4;
-}
+}*/
 
 .sidebar-option{
 	padding:15px;
@@ -94,9 +134,43 @@
 }
 
 
-.nav-sidebar{
-	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+.choices .choice span {
+	display: inline-block;
 }
+
+.choices .check-answer {
+	margin-right: 8px;
+	color: #999;
+	cursor: pointer;
+	opacity: .7;
+}
+
+.choices .check-answer.correct-answer {
+	color: #02ccba;
+	opacity: 1;
+}
+
+.choices .choice .choice-text.form-control {
+	width: 80%;
+	height: 30px;
+	padding: 4px 12px;
+}
+
+.choices .edit, .choices .save {
+	font-size: 16px;
+	cursor: pointer;
+	line-height: 20px;
+}
+
+
+.btn-group-lg>.btn, .btn-lg {
+	border-radius: 4px;
+}
+.btn-primary {
+	background-color: #02b3e4!important;
+    border-color: #02b3e4!important;
+}
+
 
 /*.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
     background-color: red !important;
@@ -106,3 +180,4 @@
 	background-color: #24323E !important;
 }
 */
+
