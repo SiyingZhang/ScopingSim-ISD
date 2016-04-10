@@ -53,6 +53,23 @@
 
 					$videoInfo.find('.info-time .detail-value').text(formatTime);
 				});
+
+
+				$('#videoPreview').click(function(){
+					console.log('click');
+					var $videoInfo = $('.videoInfo');
+					var xPath = '.info-x .detail-value';
+					var yPath = '.info-y .detail-value';
+					var timePath = '.info-time .detail-value';
+					var x = $videoInfo.find(xPath).text();
+					var y = $videoInfo.find(yPath).text();
+					var time = $videoInfo.find(timePath).text();
+
+					var $sidebarInfo = $('.sidebar-info');
+					$sidebarInfo.find(xPath).text(x);
+					$sidebarInfo.find(yPath).text(y);
+					$sidebarInfo.find(timePath).text(time);
+				})
 			});
 		</script>
 	</head>
@@ -111,7 +128,7 @@
 				<!--videoInfo-->
 				<div class="videoInfo">
 					<!--warning-->
-					<div class="alert alert-info" role="alert">Please double click to save the time and cordination for each event.</div>
+					<div class="alert alert-info" role="alert">Please click in the video area to save the time and cordination for each event.</div>
 					<!--warning message change-->
 					<!--<div class="alert alert-info" role="alert">You have already save time and cordination successfully.</div>-->
 
@@ -138,7 +155,7 @@
 
 			    		<!--submit-->
 			    		<div class="row">
-				    		<div class="col-md-4">
+				    		<div class="col-md-4 col-md-offset-7">
 				    			<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Finish Editing" ></input>
 				    		</div>
 				    	</div>
@@ -150,12 +167,18 @@
 
 			<!--sideBar-->
 			<div class="sidebar col-md-4">
-				<p class="info-x"><span>Rotation(X): </span><span class="detail-value"></span></p>
-				<p class="info-y"><span>Movement(Y): </span><span class="detail-value"></span></p>
-				<p class="info-time"><span>Time: </span><span class="detail-value"></span></p>
-
-			</div>
-		</div><!--row-->
+				<div class="sidebar-info row">
+					<div class="col-md-4">
+						<p class="info-x"><span>X: </span><span class="detail-value"></span></p>
+					</div>
+					<div class="col-md-4">
+						<p class="info-y"><span>Y: </span><span class="detail-value"></span></p>
+					</div>
+					<div class="col-md-4">
+						<p class="info-time"><span>Time: </span><span class="detail-value"></span></p>
+					</div>
+				</div><!--row-->
+			</div><!--sidebar-->
 
 		</div><!--container-->
 
