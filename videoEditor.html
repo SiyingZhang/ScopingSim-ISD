@@ -1,16 +1,28 @@
 <html>
 	<head>
 		<title>Video Editor</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>videoEditor</title>
+		<!--external css-->
+		<link rel="stylesheet" type="text/css"  href="css/styles.css" />
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
 		<style>
-			body{
+			/*body{
 				font-size: 0.8em;
-			}
-			#videoPreview{
+			}*/
+			/*#videoPreview{
 				width: 800px;
-			}
+			}*/
 
 		</style>
+		
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 		<script>
 			$( document ).ready(function(){
 				var prevX = 0;
@@ -32,19 +44,121 @@
 					prevY = coordY;
 					prevX = coordX;
 					$('#debugInfo').text("movement: " + coordY + "; rotation: " + coordX);
+
+					var $videoInfo = $('.videoInfo');
+					$videoInfo.find('.info-x .detail-value').text(coordX);
+					$videoInfo.find('.info-y .detail-value').text(coordY);
+
+					var formatTime = Math.round(video.currentTime * 100) / 100;
+
+					$videoInfo.find('.info-time .detail-value').text(formatTime);
 				});
 			});
 		</script>
 	</head>
 	<body>
-		<div id="mainContainer">
-			<div id="videoMain">
-				<video id="videoPreview">
-					<source src="images/stock.mp4" type="video/mp4">
-					Your browser does not support HTML5 video.
-				</video>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+    	</script>
+
+
+		<!--navigation bar-->
+		<nav class="navbar navbar-default"style="margin-bottom: 0px; position: relative">
+			<div class="navbar-header">
+				<!--left dropdown menu-->
+				 <ul class="nav navbar-nav navbar-left">
+				    <li class="dropdown" >
+				      <a id="eventLog" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Event Log <span class="caret"></span></a>
+				      <ul class="dropdown-menu">
+				        <li><a href="#">Time1</a></li>
+				        <li><a href="#">Time2</a></li>
+				        <li><a href="#">Time3</a></li>
+				        <li role="separator" class="divider"></li>
+				        <li><a href="#">Separated link</a></li>
+				      </ul>
+				    </li><!--dropdown-->
+				 </ul><!--nav-->
 			</div>
-			<div id="debugInfo"></div>
-		</div>
+
+			<div class="navbar-collapse collapse" id="navbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li id="user"><a href="#">Carol Cheng</a></li>
+				</ul>
+			</div>
+			<h2 id="title"><a href="#">ScopingSim</a></h2>
+			
+		    <!--title-->
+		    <!--right user logo-->
+		 <!--   <a class="navbar-brand" href="#">UserName</a>-->
+		</nav>
+
+			<!--whole container-->
+		<div class="container-fluid">
+
+			<!--video Main area-->
+			<div class="row">
+			<div class="videoMain col-md-8">
+				<!--videoPreview-->
+				<div class="videoPreview">
+					<video id="videoPreview">
+						<source src="images/stock.mp4" alt="videoPreview" type="video/mp4">
+					</video>
+				</div><!--videoPreview-->
+
+
+				<!--videoInfo-->
+				<div class="videoInfo">
+					<!--warning-->
+					<div class="alert alert-info" role="alert">Please double click to save the time and cordination for each event.</div>
+					<!--warning message change-->
+					<!--<div class="alert alert-info" role="alert">You have already save time and cordination successfully.</div>-->
+
+	    			
+	    			<!--x, y, time-->	
+		    		<div classs="info">
+		    			<!--x,y,time-->
+		    			<div class="row" style="margin-bottom:10px">
+		    				<!--X-->
+			    			<div class="col-md-3 col-md-offset-1" >
+				    			<p class="info-x" style="line-height: 46px; margin: 0"><span>Rotation(X): </span><span class="detail-value"></span></p>
+				    		</div>
+
+				    		<!--Y-->
+				    		<div class="col-md-3">
+				    			<p class="info-y" style="line-height: 46px; margin: 0"><span>Movement(Y): </span><span class="detail-value"></span></p>
+				    		</div>
+
+				    		<!--Time-->
+				    		<div class="col-md-2 col-md-offset-1">
+				    			<p class="info-time" style="line-height: 46px; margin: 0"><span>Time: </span><span class="detail-value"></span></p>
+				    		</div>
+				    	</div><!--row-->
+
+			    		<!--submit-->
+			    		<div class="row">
+				    		<div class="col-md-4">
+				    			<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Finish Editing" ></input>
+				    		</div>
+				    	</div>
+
+			    	</div><!--info-->
+				</div><!--videoInfo-->
+
+			</div><!--videoMain-->
+
+			<!--sideBar-->
+			<div class="sidebar col-md-4">
+				<p class="info-x"><span>Rotation(X): </span><span class="detail-value"></span></p>
+				<p class="info-y"><span>Movement(Y): </span><span class="detail-value"></span></p>
+				<p class="info-time"><span>Time: </span><span class="detail-value"></span></p>
+
+			</div>
+		</div><!--row-->
+
+		</div><!--container-->
+
 	</body>
+
 </html>

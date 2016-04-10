@@ -1,0 +1,59 @@
+
+.navbar {
+	margin-bottom:0px;
+	text-align: center;
+
+}
+
+#eventLog{
+	color:#02b3e4;
+	font-size:18px;
+}
+
+#title {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0;
+}
+
+#title a{
+	color:#02ccba;
+}
+#title a:hover {
+	text-decoration: none;
+}
+
+#user{
+	color:;
+	float:right;
+	font-size:18px;
+}
+.container-fluid{
+	background-color:#FAFBFC;
+
+}
+
+#videoPreview{
+	width:100%;
+}
+
+.sidebar{
+	float:left;
+	background-color:#2E3D49;
+	width:100%%;
+	height:100%;
+}
+
+.videoMain {
+	margin-top: 15px;
+}
+
+.info{
+	padding:15px;
+}
+
+#eventLog{
+	display:block;
+}
