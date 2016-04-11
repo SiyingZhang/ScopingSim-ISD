@@ -6,6 +6,7 @@ $( document ).ready(function(){
 	var h = $( document ).height();
 	var w = $( document ).width();
 	
+	// mousemove and track x and y
 	$('#videoPreview').mousemove(function( event ) {
 		var coordX = event.pageX;
 		var coordY = event.pageY;
@@ -28,7 +29,7 @@ $( document ).ready(function(){
 		$videoInfo.find('.info-time .detail-value').text(formatTime);
 	});
 
-
+	// click the video area to enable, click on the preview area and catch x and y
 	$('#videoPreview').click(function(){
 		console.log('click');
 		$('.sidebar .overlay').addClass('hidden');
@@ -46,18 +47,28 @@ $( document ).ready(function(){
 		$sidebarInfo.find(timePath).text(time);
 	})
 
+	//click the submit Event button to overlay
+	$('#submitEvent').click(function(){
+		console.log('click');
+		$('.sidebar .overlay').removeClass('hidden');
+	})
+
+
+
+	// add new note/quiz button
 	$('.modal').on('click', '.add-btn', function(){
 		var id = $(this).closest('.modal').attr('id');
 		addOperation(id);
 	})
 
-
+	// edit model
 	$('.modal').on('click', '.edit, .save', function(){
 		var isEdit = $(this).hasClass('edit');
 		var $choice = $(this).closest('.choice');
 		editOperation($choice, isEdit);
 	})
 
+	// check correct answer
 	$('.modal').on('click', '.check-answer', function(){
 		var $modal = $(this).closest('.modal');
 		var $choices = $(this).closest('.choices');
