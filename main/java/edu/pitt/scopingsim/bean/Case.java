@@ -1,4 +1,4 @@
-package edu.pitt.scopingsim.bean;
+package java.edu.pitt.scopingsim.bean;
 
 import java.util.ArrayList;
 import java.util.UUID;
