@@ -6,7 +6,7 @@ $( document ).ready(function(){
 	var h = $( document ).height();
 	var w = $( document ).width();
 	
-	// mousemove and track x and y
+	// mousemove track x and y
 	$('#videoPreview').mousemove(function( event ) {
 		var coordX = event.pageX;
 		var coordY = event.pageY;
@@ -29,46 +29,43 @@ $( document ).ready(function(){
 		$videoInfo.find('.info-time .detail-value').text(formatTime);
 	});
 
-	// click the video area to enable, click on the preview area and catch x and y
+	//click the video area to add class to hide overlay
+	//click on the preview area and put the x,y, time value to the side-info 
 	$('#videoPreview').click(function(){
 		console.log('click');
 		$('.sidebar .overlay').addClass('hidden');
+
 		var $videoInfo = $('.videoInfo');
 		var xPath = '.info-x .detail-value';
 		var yPath = '.info-y .detail-value';
 		var timePath = '.info-time .detail-value';
-		var x = $videoInfo.find(xPath).text();
+		var x = $videoInfo.find(xPath).text(); //get the text format of this elmement according to the selector/path
 		var y = $videoInfo.find(yPath).text();
 		var time = $videoInfo.find(timePath).text();
 
 		var $sidebarInfo = $('.sidebar-info');
-		$sidebarInfo.find(xPath).text(x);
+		$sidebarInfo.find(xPath).text(x); //set the text
 		$sidebarInfo.find(yPath).text(y);
 		$sidebarInfo.find(timePath).text(time);
 	})
 
-	//click the submit Event button to overlay
-	$('#submitEvent').click(function(){
-		console.log('click');
-		$('.sidebar .overlay').removeClass('hidden');
-	})
 
 
 
-	// add new note/quiz button
+	// add new note/quiz button, click and id increase by one
 	$('.modal').on('click', '.add-btn', function(){
 		var id = $(this).closest('.modal').attr('id');
 		addOperation(id);
 	})
 
-	// edit model
+	// click on edit and save in the choice of modal
 	$('.modal').on('click', '.edit, .save', function(){
 		var isEdit = $(this).hasClass('edit');
 		var $choice = $(this).closest('.choice');
 		editOperation($choice, isEdit);
 	})
 
-	// check correct answer
+	// click the correct answer
 	$('.modal').on('click', '.check-answer', function(){
 		var $modal = $(this).closest('.modal');
 		var $choices = $(this).closest('.choices');
@@ -77,13 +74,52 @@ $( document ).ready(function(){
 		checkAnswerOperation($choices, $(this), isMultiple);
 	})
 
-	$('.modal').on('hidden.bs.modal', function(){
-		console.log('close');
-		initModal($(this));
+	//close the modal and initialze the modal
+	// $('.modal').on('hidden.bs.modal', function(){
+	// 	console.log('close');
+	// 	initModal($(this));
+	// })
+
+	//click on "save changes" on each modal for note
+	$('.modal #saveNote').click(function(){
+		console.log('click');
+		// saveNote();
+	})
+
+	// on('click', '.save', function(){
+	// 	var isEdit = $(this).hasClass('edit');
+	// 	var $choice = $(this).closest('.choice');
+	// 	editOperation($choice, isEdit);
+	// })
+
+
+
+	$('.modal .reset').click(function(){
+		var $modal = $(this).closest('.modal');
+		initModal($modal);
+	})
+
+	$('.modal .save-modal').click(function(){
+		var $modal = $(this).closest('.modal');
+		$modal.modal('hide');
+		console.log('fake save');
+	})
+
+	$('#submitEvent').click(function(){
+		var $noteModal = $('#noteModal');
+		var notes = getNotes($noteModal);
+		console.log(notes);
+		// $('.sidebar .overlay').removeClass('hidden');
+		var $textQuizModal = $('#textQuizModal');
+		var textQuiz = getTextQuiz($textQuizModal);
+		console.log(textQuiz);
 	})
 
 });
 
+
+
+//functions
 
 function addOperation(id) {
 	var $modal = $('#' + id);
@@ -95,7 +131,7 @@ function addOperation(id) {
 	$template.hide().slideDown();
 }
 
-function editOperation($choice, isEdit) {
+function editOperation($choice, isEdit) { //isEdit??
 
 	var $text = $choice.find('.choice-text');
 	var $editBtn = $choice.find('.edit');
@@ -130,6 +166,132 @@ function initModal($modal) {
 	$modal.find('.correct-answer').removeClass('correct-answer');
 }
 
+function Event() {
+	self = this;
 
 
+}
+
+function getNotes($modal) {
+	var $inputs = $modal.find('.content-area input');
+	var res = [];
+	$.each($inputs, function(i){
+		if ($(this).val()) 
+			res.push($(this).val());
+	})
+
+	return res;
+}
+
+
+function getTextQuiz($modal) {
+	var $textQuestions = $modal.find('.content-area .text-questions');
+	var res = [];
+	$.each($textQuestions, function(i){
+		var question = $(this).find('input').val();
+		var answer = $(this).find('textarea').val();
+
+		if (question && answer) {
+			var q = {};
+			q.question = question;
+			q.answer = answer;
+			res.push(q);
+		}
+			
+	})
+
+	return res;
+}
+
+
+
+
+
+
+
+
+
+
+
+// function Note() {
+
+// 	var self = this;
+// 	self.cache = null;
+// 	var url = '';
+
+// 	this.save = function(id, obj, callback) {
+
+// 		$.ajax({
+// 			type: 'post',
+// 			url: url,
+// 			data: JSON.stringify(obj), // may change
+// 			contentType: 'application/json',
+// 			success: function (data) {
+// 				self.cache = data;
+// 				callback(data);
+// 			}
+// 		});
+
+// 	}
+
+// 	this.get = function(id, callback) {
+// 		if (!cache) {
+
+// 			$.ajax({
+// 				type: 'get',
+// 				url: url,
+// 				data: {id: id}, // may change
+// 				contentType: 'application/json',
+// 				success: function (data) {
+// 					self.cache = data;
+// 					callback(data);
+// 				}
+// 			});
+
+// 		} else {
+// 			callback(self.cache);
+// 		}
+// 	}
+
+// }
+
+
+// function TextQuiz() {
+	
+// }
+
+// function CheckBoxQuiz() {
+	
+// }
+
+// function MultipleChoiceQuiz() {
+	
+// }
+
+
+//postEvent
+//catch x, y, time
+// function postEvent() {
+// //get the x, y, time value
+// 	var $videoInfo = $('.videoInfo');
+// 	var xPath = '.info-x .detail-value';
+// 	var yPath = '.info-y .detail-value';
+// 	var timePath = '.info-time .detail-value';
+// 	var x = $videoInfo.find(xPath).text();
+// 	var y = $videoInfo.find(yPath).text();
+// 	var time = $videoInfo.find(timePath).text();
+
+// //get the content from note
+// function saveNote(){
+
+// }
+
+
+
+// //post it in json
+//     $.ajax("sampletextcontent.json", //?????url
+//              {success: initModal, type: "POST", dataType: "json" }); //?????success:clean all the modal
+//         }
+
+//     successFn)
 
